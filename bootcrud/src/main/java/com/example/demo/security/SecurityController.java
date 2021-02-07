@@ -16,6 +16,7 @@ public class SecurityController {
 	@Autowired
 	private SecurityService securityService;
 	
+	// get Method에 /security/create/token?subject={id} 입력 시 token key 반환
 	@GetMapping("/create/token")
 	public Map<String, Object> createToken(@RequestParam(value = "subject") String subject) {
 		String token = securityService.createToken(subject, (2*1000*60));

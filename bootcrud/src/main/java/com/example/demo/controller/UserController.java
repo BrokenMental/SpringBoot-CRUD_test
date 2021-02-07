@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.aspect.TokenRequired;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.service.UserService;
 
@@ -31,6 +32,8 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	
+	// get Method로 /users/{userId}, header에 token = {token key} 입력
+	@TokenRequired
 	@GetMapping("/{userId}")
 	public UserDTO getUserByUserId(@PathVariable String userId) {
 		return userService.getUserByUserId(userId);
